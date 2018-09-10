@@ -5,6 +5,7 @@ import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.tools.DataSet;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BibliotecaApp {
 
@@ -12,8 +13,28 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        bibliotecaApp.printWelcomeInfo();
-        bibliotecaApp.listAllBooks();
+        bibliotecaApp.run();
+    }
+
+    private void run() {
+        while (true) {
+            printWelcomeInfo();
+            displayMainMenu();
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            if (input.equals("1")) {
+                listAllBooks();
+            }
+        }
+    }
+
+    public void printWelcomeInfo() {
+        String welcomeInfo = "------------------------------------------\n" +
+                "Welcome to The Bangalore Public Library!\n";
+        System.out.print(welcomeInfo);
     }
 
     public void listAllBooks() {
@@ -22,9 +43,11 @@ public class BibliotecaApp {
         bookController.listAllBooks(bookList);
     }
 
-    public void printWelcomeInfo() {
-        String welcomeInfo = "Welcome to The Bangalore Public Library!\n" +
-                "------------------------------------------\n";
-        System.out.print(welcomeInfo);
+    public void displayMainMenu() {
+        String menu = "------------------------------------------\n" +
+                "       Main Menu       \n" +
+                "List Books, please press 1.\n" +
+                "Exit System, please press 0.\n";
+        System.out.print(menu);
     }
 }
