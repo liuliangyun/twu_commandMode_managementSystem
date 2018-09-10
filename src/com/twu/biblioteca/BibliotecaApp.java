@@ -29,9 +29,13 @@ public class BibliotecaApp {
                 listAllBooks();
             }
             else {
-                System.out.println("Select a valid option!");
+                notifyInvalidOption();
             }
         }
+    }
+
+    public void notifyInvalidOption() {
+        System.out.println("Select a valid option!");
     }
 
     public void printWelcomeInfo() {
