@@ -12,4 +12,8 @@ public class BookController {
     public void listAllBooks(ArrayList<Book> bookList) {
         bookService.listAllBooks(bookList);
     }
+
+    public void checkoutBook(String bookName, ArrayList<Book> bookList) {
+        bookService.checkoutBook(bookName, bookList);
+    }
 }

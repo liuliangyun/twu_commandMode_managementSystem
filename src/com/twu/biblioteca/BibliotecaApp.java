@@ -9,7 +9,10 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    private BookController bookController = new BookController();
+    DataSet dataSet = new DataSet();
+    ArrayList<Book> bookList = dataSet.setBookList();
+    BookController bookController = new BookController();
+    Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
@@ -20,13 +23,15 @@ public class BibliotecaApp {
         while (true) {
             printWelcomeInfo();
             displayMainMenu();
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             if (input.equals("0")) {
                 break;
             }
             else if (input.equals("1")) {
                 listAllBooks();
+            }
+            else if (input.equals("2")) {
+                checkoutBook();
             }
             else {
                 notifyInvalidOption();
@@ -45,8 +50,6 @@ public class BibliotecaApp {
     }
 
     public void listAllBooks() {
-        DataSet dataSet = new DataSet();
-        ArrayList<Book> bookList = dataSet.setBookList();
         bookController.listAllBooks(bookList);
     }
 
@@ -54,7 +57,14 @@ public class BibliotecaApp {
         String menu = "------------------------------------------\n" +
                 "       Main Menu       \n" +
                 "List Books, please press 1.\n" +
-                "Exit System, please press 0.\n";
+                "Checkout Book, please press 2.\n" +
+                "Quit System, please press 0.\n";
         System.out.print(menu);
+    }
+
+    public void checkoutBook() {
+        System.out.print("Please enter the book name.\n");
+        String bookName = scanner.nextLine();
+        bookController.checkoutBook(bookName,bookList);
     }
 }
