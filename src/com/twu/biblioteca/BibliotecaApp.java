@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.BookController;
+import com.twu.biblioteca.controller.PageController;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.tools.DataSet;
 
@@ -9,10 +10,11 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    DataSet dataSet = new DataSet();
-    ArrayList<Book> bookList = dataSet.setBookList();
-    BookController bookController = new BookController();
-    Scanner scanner = new Scanner(System.in);
+    private DataSet dataSet = new DataSet();
+    private ArrayList<Book> bookList = dataSet.setBookList();
+    private BookController bookController = new BookController();
+    private PageController pageController = new PageController();
+    private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
@@ -21,61 +23,54 @@ public class BibliotecaApp {
 
     private void run() {
         while (true) {
-            printWelcomeInfo();
+            displayWelcomeInfo();
             displayMainMenu();
             String input = scanner.nextLine();
             if (input.equals("0")) {
                 break;
-            }
-            else if (input.equals("1")) {
+            } else if (input.equals("1")) {
                 listAllBooks();
-            }
-            else if (input.equals("2")) {
+            } else if (input.equals("2")) {
                 checkoutBook();
-            }
-            else if(input.equals("3")) {
+            } else if (input.equals("3")) {
                 returnBook();
-            }
-            else {
+            } else {
                 notifyInvalidOption();
             }
         }
     }
 
 
-    public void notifyInvalidOption() {
+    private void notifyInvalidOption() {
         System.out.println("Select a valid option!");
     }
 
-    public void printWelcomeInfo() {
-        String welcomeInfo = "------------------------------------------\n" +
-                "Welcome to The Bangalore Public Library!\n";
-        System.out.print(welcomeInfo);
-    }
-
-    public void listAllBooks() {
-        bookController.listAllBooks(bookList);
+    private void displayWelcomeInfo() {
+        pageController.displayWelcomeInfo();
     }
 
     public void displayMainMenu() {
-        String menu = "------------------------------------------\n" +
-                "       Main Menu       \n" +
-                "List Books, please press 1.\n" +
-                "Checkout Book, please press 2.\n" +
-                "Return Book, please press 3.\n" +
-                "Quit System, please press 0.\n";
-        System.out.print(menu);
+        pageController.displayMainMenu();
     }
 
-    public void checkoutBook() {
-        System.out.print("Please enter the bookId.\n");
-        Long bookId = Long.parseLong(scanner.nextLine());
-        bookController.checkoutBook(bookId,bookList);
+    private void listAllBooks() {
+        bookController.listAllBooks(bookList);
     }
 
-    public void returnBook() {
-        System.out.print("Please enter the bookId.\n");
-        Long bookId = Long.parseLong(scanner.nextLine());
-        bookController.returnBook(bookId,bookList);
+    private void checkoutBook() {
+        Long bookId = getInputBookId();
+        bookController.checkoutBook(bookId, bookList);
     }
+
+
+    private void returnBook() {
+        Long bookId = getInputBookId();
+        bookController.returnBook(bookId, bookList);
+    }
+
+    private Long getInputBookId() {
+        System.out.print("Please enter the bookId.\n");
+        return Long.parseLong(scanner.nextLine());
+    }
+
 }

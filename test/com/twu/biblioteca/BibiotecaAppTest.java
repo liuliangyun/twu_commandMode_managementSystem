@@ -1,8 +1,9 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.controller.BookController;
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.service.BookService;
+import com.twu.biblioteca.service.PageService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +16,10 @@ import static org.junit.Assert.assertEquals;
 
 public class BibiotecaAppTest {
 
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
-    BibliotecaApp bibliotecaApp = new BibliotecaApp();
-    BookController bookController = new BookController();
-    ArrayList<Book> bookList = new ArrayList<Book>();
+    private ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private BookService bookService = new BookService();
+    private PageService pageService = new PageService();
+    private ArrayList<Book> bookList = new ArrayList<Book>();
 
     @Before
     public void setUp() throws Exception {
@@ -44,30 +45,14 @@ public class BibiotecaAppTest {
                 "Welcome to The Bangalore Public Library!\n";
 
         // when
-        bibliotecaApp.printWelcomeInfo();
+        pageService.displayWelcomeInfo();
 
         // then
         assertEquals(output.toString(), expect);
     }
 
     @Test
-    public void should_list_all_books() {
-        // given
-        String expect = "------------------------------------------\n" +
-                "图书列表: \n" +
-                "编号     书名     作者名     出版年\n" +
-                "1. 深入浅出 Java, Kathy Sierra, 2005.\n" +
-                "2. JavaScript 权威指南, David Flanagan, 2012.\n";
-
-        // when
-        bookController.listAllBooks(bookList);
-
-        // then
-        assertEquals(output.toString(), expect);
-    }
-
-    @Test
-    public void should_diaplay_main_menu() {
+    public void should_display_main_menu() {
         // given
         String expect = "------------------------------------------\n" +
                 "       Main Menu       \n" +
@@ -77,7 +62,22 @@ public class BibiotecaAppTest {
                 "Quit System, please press 0.\n";
 
         // when
-        bibliotecaApp.displayMainMenu();
+        pageService.displayMainMenu();
+
+        // then
+        assertEquals(output.toString(), expect);
+    }
+
+    @Test
+    public void should_list_all_books() {
+        // given
+        String expect = "------------------------------------------\n" +
+                "编号     书名     作者名     出版年\n" +
+                "1. 深入浅出 Java, Kathy Sierra, 2005.\n" +
+                "2. JavaScript 权威指南, David Flanagan, 2012.\n";
+
+        // when
+        bookService.listAllBooks(bookList);
 
         // then
         assertEquals(output.toString(), expect);
@@ -90,7 +90,7 @@ public class BibiotecaAppTest {
         Long bookId = 1L;
 
         // when
-        bookController.checkoutBook(bookId, bookList);
+        bookService.checkoutBook(bookId, bookList);
 
         //then
         assertEquals(output.toString(), expect);
@@ -103,7 +103,7 @@ public class BibiotecaAppTest {
         Long bookId = 4L;
 
         // when
-        bookController.checkoutBook(bookId, bookList);
+        bookService.checkoutBook(bookId, bookList);
 
         //then
         assertEquals(output.toString(), expect);
@@ -117,7 +117,7 @@ public class BibiotecaAppTest {
         Long bookId = bookList.get(0).getBookId();
 
         // when
-        bookController.returnBook(bookId, bookList);
+        bookService.returnBook(bookId, bookList);
 
         // then
         assertEquals(output.toString(), expect);
@@ -130,7 +130,7 @@ public class BibiotecaAppTest {
         Long bookId = 5L;
 
         // when
-        bookController.returnBook(bookId, bookList);
+        bookService.returnBook(bookId, bookList);
 
         // then
         assertEquals(output.toString(), expect);
