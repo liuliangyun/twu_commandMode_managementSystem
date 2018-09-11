@@ -33,11 +33,15 @@ public class BibliotecaApp {
             else if (input.equals("2")) {
                 checkoutBook();
             }
+            else if(input.equals("3")) {
+                returnBook();
+            }
             else {
                 notifyInvalidOption();
             }
         }
     }
+
 
     public void notifyInvalidOption() {
         System.out.println("Select a valid option!");
@@ -58,13 +62,20 @@ public class BibliotecaApp {
                 "       Main Menu       \n" +
                 "List Books, please press 1.\n" +
                 "Checkout Book, please press 2.\n" +
+                "Return Book, please press 3.\n" +
                 "Quit System, please press 0.\n";
         System.out.print(menu);
     }
 
     public void checkoutBook() {
-        System.out.print("Please enter the book name.\n");
-        String bookName = scanner.nextLine();
-        bookController.checkoutBook(bookName,bookList);
+        System.out.print("Please enter the bookId.\n");
+        Long bookId = Long.parseLong(scanner.nextLine());
+        bookController.checkoutBook(bookId,bookList);
+    }
+
+    public void returnBook() {
+        System.out.print("Please enter the bookId.\n");
+        Long bookId = Long.parseLong(scanner.nextLine());
+        bookController.returnBook(bookId,bookList);
     }
 }

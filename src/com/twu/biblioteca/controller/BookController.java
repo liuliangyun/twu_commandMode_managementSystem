@@ -13,7 +13,11 @@ public class BookController {
         bookService.listAllBooks(bookList);
     }
 
-    public void checkoutBook(String bookName, ArrayList<Book> bookList) {
-        bookService.checkoutBook(bookName, bookList);
+    public void checkoutBook(Long bookId, ArrayList<Book> bookList) {
+        bookService.checkoutBook(bookId, bookList);
+    }
+
+    public void returnBook(Long bookId, ArrayList<Book> bookList) {
+        bookService.returnBook(bookId, bookList);
     }
 }

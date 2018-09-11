@@ -24,10 +24,12 @@ public class BibiotecaAppTest {
     public void setUp() throws Exception {
         System.setOut(new PrintStream(output));
         Book book_Java = new Book(
+                1L,
                 "深入浅出 Java",
                 "Kathy Sierra",
                 "2005");
         Book book_JavaScript = new Book(
+                2L,
                 "JavaScript 权威指南",
                 "David Flanagan",
                 "2012");
@@ -53,9 +55,9 @@ public class BibiotecaAppTest {
         // given
         String expect = "------------------------------------------\n" +
                 "图书列表: \n" +
-                "书名     作者名     出版年\n" +
-                "深入浅出 Java, Kathy Sierra, 2005.\n" +
-                "JavaScript 权威指南, David Flanagan, 2012.\n";
+                "编号     书名     作者名     出版年\n" +
+                "1. 深入浅出 Java, Kathy Sierra, 2005.\n" +
+                "2. JavaScript 权威指南, David Flanagan, 2012.\n";
 
         // when
         bookController.listAllBooks(bookList);
@@ -71,6 +73,7 @@ public class BibiotecaAppTest {
                 "       Main Menu       \n" +
                 "List Books, please press 1.\n" +
                 "Checkout Book, please press 2.\n" +
+                "Return Book, please press 3.\n" +
                 "Quit System, please press 0.\n";
 
         // when
@@ -84,10 +87,10 @@ public class BibiotecaAppTest {
     public void should_print_successful_checkout_message() {
         // given
         String expect = "Thank you! Enjoy the book.\n";
-        String bookName = "JavaScript 权威指南";
+        Long bookId = 1L;
 
         // when
-        bookController.checkoutBook(bookName,bookList);
+        bookController.checkoutBook(bookId, bookList);
 
         //then
         assertEquals(output.toString(), expect);
@@ -97,12 +100,39 @@ public class BibiotecaAppTest {
     public void should_print_unSuccessful_checkout_message() {
         // given
         String expect = "That book is not available.\n";
-        String bookName = "Java 权威指南";
+        Long bookId = 4L;
 
         // when
-        bookController.checkoutBook(bookName,bookList);
+        bookController.checkoutBook(bookId, bookList);
 
         //then
+        assertEquals(output.toString(), expect);
+    }
+
+    @Test
+    public void should_print_successful_return_message() {
+        // given
+        String expect = "Thank you for returning the book.\n";
+        bookList.get(0).setCheckOut(true);
+        Long bookId = bookList.get(0).getBookId();
+
+        // when
+        bookController.returnBook(bookId, bookList);
+
+        // then
+        assertEquals(output.toString(), expect);
+    }
+
+    @Test
+    public void should_print_unSuccessful_return_message() {
+        // given
+        String expect = "That is not a valid book to return.\n";
+        Long bookId = 5L;
+
+        // when
+        bookController.returnBook(bookId, bookList);
+
+        // then
         assertEquals(output.toString(), expect);
     }
 
