@@ -12,10 +12,10 @@ public class BookService {
         System.out.print(Constants.BOOKLIST_TITLE);
         for (Book book : bookList) {
             if (!book.isCheckOut()) {
-                System.out.print(book.getBookId() + ". "
-                        + book.getBookName() + ", "
-                        + book.getAuthorName() + ", "
-                        + book.getPublishedYear() + ".\n");
+                System.out.print(book.getId() + ". "
+                        + book.getName() + ", "
+                        + book.getProducerName() + ", "
+                        + book.getYear() + ".\n");
             }
         }
     }
@@ -32,7 +32,7 @@ public class BookService {
 
     private Book findBookById(Long bookId, ArrayList<Book> bookList) {
         for (Book book : bookList) {
-            if (book.getBookId() == bookId) {
+            if (book.getId() == bookId) {
                 return book;
             }
         }

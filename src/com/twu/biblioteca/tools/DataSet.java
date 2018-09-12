@@ -36,8 +36,7 @@ public class DataSet {
                 2L,
                 "教父",
                 "弗朗西斯·福特·科波拉",
-                "1972",
-                9.2);
+                "1972");
         movieList.add(movie_Schindler);
         movieList.add(movie_Godfather);
         return movieList;

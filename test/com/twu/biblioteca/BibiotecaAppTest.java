@@ -26,7 +26,7 @@ public class BibiotecaAppTest {
     private ArrayList<Movie> movieList = new ArrayList<Movie>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         System.setOut(new PrintStream(output));
         Book book_Java = new Book(
                 1L,
@@ -51,8 +51,7 @@ public class BibiotecaAppTest {
                 2L,
                 "教父",
                 "弗朗西斯·福特·科波拉",
-                "1972",
-                9.2);
+                "1972");
         movieList.add(movie_Schindler);
         movieList.add(movie_Godfather);
     }
@@ -134,7 +133,7 @@ public class BibiotecaAppTest {
         // given
         String expect = "Thank you for returning the book.\n";
         bookList.get(0).setCheckOut(true);
-        Long bookId = bookList.get(0).getBookId();
+        Long bookId = bookList.get(0).getId();
 
         // when
         bookService.returnBook(bookId, bookList);
@@ -162,7 +161,7 @@ public class BibiotecaAppTest {
         String expect = "------------------------------------------\n" +
                 "编号     电影名称     导演     出版年     评分\n" +
                 "1. 辛德勒的名单, 史蒂文·斯皮尔伯格, 1993, 9.4.\n" +
-                "2. 教父, 弗朗西斯·福特·科波拉, 1972, 9.2.\n";
+                "2. 教父, 弗朗西斯·福特·科波拉, 1972, 0.0.\n";
 
         // when
         movieService.listAllMovies(movieList);
@@ -172,7 +171,7 @@ public class BibiotecaAppTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         System.setOut(System.out);
     }
 }

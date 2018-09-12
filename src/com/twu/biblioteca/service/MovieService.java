@@ -11,11 +11,11 @@ public class MovieService {
         System.out.print(Constants.SPLIT_LINE);
         System.out.print(Constants.MOVIELIST_TITLE);
         for (Movie movie : movieList) {
-            if (!movie.isCheckout()) {
-                System.out.print(movie.getMovieId() + ". "
-                        + movie.getMovieName() + ", "
-                        + movie.getDirectorName() + ", "
-                        + movie.getPublishedYear() + ", "
+            if (!movie.isCheckOut()) {
+                System.out.print(movie.getId() + ". "
+                        + movie.getName() + ", "
+                        + movie.getProducerName() + ", "
+                        + movie.getYear() + ", "
                         + movie.getRate() + ".\n");
             }
         }
