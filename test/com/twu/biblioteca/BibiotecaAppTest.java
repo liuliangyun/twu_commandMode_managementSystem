@@ -3,9 +3,11 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.service.BookService;
 import com.twu.biblioteca.service.MovieService;
 import com.twu.biblioteca.service.PageService;
+import com.twu.biblioteca.service.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +26,8 @@ public class BibiotecaAppTest {
     private ArrayList<Book> bookList = new ArrayList<Book>();
     private MovieService movieService = new MovieService();
     private ArrayList<Movie> movieList = new ArrayList<Movie>();
+    private ArrayList<User> userList = new ArrayList<User>();
+    private UserService userService = new UserService();
 
     @Before
     public void setUp() {
@@ -54,6 +58,21 @@ public class BibiotecaAppTest {
                 "1972");
         movieList.add(movie_Schindler);
         movieList.add(movie_Godfather);
+
+        User user_Zhangsan = new User(
+                "Zhangsan",
+                "zhangsan@qq.com",
+                "024-1111111",
+                "024-1111",
+                "1111111");
+        User user_Lisi = new User(
+                "Lisi",
+                "lisi@qq.com",
+                "024-2222222",
+                "024-2222",
+                "2222222");
+        userList.add(user_Zhangsan);
+        userList.add(user_Lisi);
     }
 
     @Test
@@ -194,6 +213,34 @@ public class BibiotecaAppTest {
         movieService.checkoutMovie(movieId, movieList);
 
         //then
+        assertEquals(output.toString(), expect);
+    }
+
+    @Test
+    public void should_print_successful_login_message() {
+        // given
+        String expect = "Login successful! Enjoy yourself.\n";
+        String libraryNumber = "024-1111";
+        String passWord = "1111111";
+
+        // when
+        userService.logIn(libraryNumber, passWord, userList);
+
+        // then
+        assertEquals(output.toString(), expect);
+    }
+
+    @Test
+    public void should_print_unSuccessful_login_message() {
+        // given
+        String expect = "That user is not available.\n";
+        String libraryNumber = "1111";
+        String passWord = "1111111";
+
+        // when
+        userService.logIn(libraryNumber, passWord, userList);
+
+        // then
         assertEquals(output.toString(), expect);
     }
 

@@ -2,6 +2,7 @@ package com.twu.biblioteca.tools;
 
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,25 @@ public class DataSet {
         movieList.add(movie_Schindler);
         movieList.add(movie_Godfather);
         return movieList;
+    }
+
+    public ArrayList<User> setUserList() {
+        ArrayList<User> userList = new ArrayList<User>();
+        User user_Zhangsan = new User(
+                "Zhangsan",
+                "zhangsan@qq.com",
+                "024-1111111",
+                "024-1111",
+                "1111111");
+        User user_Lisi = new User(
+                "Lisi",
+                "lisi@qq.com",
+                "024-2222222",
+                "024-2222",
+                "2222222");
+        userList.add(user_Zhangsan);
+        userList.add(user_Lisi);
+        return userList;
     }
 
 }

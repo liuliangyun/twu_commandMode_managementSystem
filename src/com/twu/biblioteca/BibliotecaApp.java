@@ -3,8 +3,10 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.controller.BookController;
 import com.twu.biblioteca.controller.MovieController;
 import com.twu.biblioteca.controller.PageController;
+import com.twu.biblioteca.controller.UserController;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.tools.DataSet;
 
 import java.util.ArrayList;
@@ -15,9 +17,11 @@ public class BibliotecaApp {
     private DataSet dataSet = new DataSet();
     private ArrayList<Book> bookList = dataSet.setBookList();
     private ArrayList<Movie> movieList = dataSet.setMovieList();
+    private ArrayList<User> userList = dataSet.setUserList();
     private BookController bookController = new BookController();
     private PageController pageController = new PageController();
     private MovieController movieController = new MovieController();
+    private UserController userController = new UserController();
     private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -26,6 +30,7 @@ public class BibliotecaApp {
     }
 
     private void run() {
+        User user = null;
         while (true) {
             displayWelcomeInfo();
             displayMainMenu();
@@ -35,13 +40,25 @@ public class BibliotecaApp {
             } else if (input.equals("1")) {
                 listAllBooks();
             } else if (input.equals("2")) {
-                checkoutBook();
+                if (user != null) {
+                    checkoutBook();
+                } else {
+                    user = logIn();
+                }
             } else if (input.equals("3")) {
-                returnBook();
+                if (user != null) {
+                    returnBook();
+                } else {
+                    user = logIn();
+                }
             } else if (input.equals(("4"))) {
                 listAllMovies();
             } else if (input.equals(("5"))) {
-                checkoutMovie();
+                if (user != null) {
+                    checkoutMovie();
+                } else {
+                    user = logIn();
+                }
             } else {
                 notifyInvalidOption();
             }
@@ -87,6 +104,14 @@ public class BibliotecaApp {
     private void checkoutMovie() {
         Long movieId = getInputId();
         movieController.checkoutMovie(movieId, movieList);
+    }
+
+    private User logIn() {
+        System.out.print("Please enter the library number.\n");
+        String libraryNumber = scanner.nextLine();
+        System.out.print("Please enter the password.\n");
+        String password = scanner.nextLine();
+        return userController.logIn(libraryNumber, password, userList);
     }
 
 }

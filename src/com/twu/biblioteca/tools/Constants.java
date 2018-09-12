@@ -19,5 +19,7 @@ public class Constants {
     public static final String CHECKOUT_MOVIE_OPTION = "Checkout Movie, please press 5.\n";
     public static final String CHECKOUT_MOVIE_SUCCESSFUL = "Thank you! Enjoy the movie.\n";
     public static final String CHECKOUT_MOVIE_UNSUCCESSFUL = "That movie is not available.\n";
+    public static final String LOGIN_SUCCESSFUL = "Login successful! Enjoy yourself.\n";
+    public static final String LOGIN_UNSUCCESSFUL = "That user is not available.\n";
 
 }
