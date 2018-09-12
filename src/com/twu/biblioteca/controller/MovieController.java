@@ -13,4 +13,7 @@ public class MovieController {
         movieService.listAllMovies(movieList);
     }
 
+    public void checkoutMovie(Long movieId, ArrayList<Movie> movieList) {
+        movieService.checkoutMovie(movieId, movieList);
+    }
 }

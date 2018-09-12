@@ -40,13 +40,13 @@ public class BibliotecaApp {
                 returnBook();
             } else if (input.equals(("4"))) {
                 listAllMovies();
-            }
-            else {
+            } else if (input.equals(("5"))) {
+                checkoutMovie();
+            } else {
                 notifyInvalidOption();
             }
         }
     }
-
 
     private void notifyInvalidOption() {
         System.out.println("Select a valid option!");
@@ -65,23 +65,28 @@ public class BibliotecaApp {
     }
 
     private void checkoutBook() {
-        Long bookId = getInputBookId();
+        Long bookId = getInputId();
         bookController.checkoutBook(bookId, bookList);
     }
 
 
     private void returnBook() {
-        Long bookId = getInputBookId();
+        Long bookId = getInputId();
         bookController.returnBook(bookId, bookList);
     }
 
-    private Long getInputBookId() {
-        System.out.print("Please enter the bookId.\n");
+    private Long getInputId() {
+        System.out.print("Please enter the id.\n");
         return Long.parseLong(scanner.nextLine());
     }
 
     private void listAllMovies() {
         movieController.listAllMovies(movieList);
+    }
+
+    private void checkoutMovie() {
+        Long movieId = getInputId();
+        movieController.checkoutMovie(movieId, movieList);
     }
 
 }

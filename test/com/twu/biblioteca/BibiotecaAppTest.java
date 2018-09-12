@@ -78,6 +78,7 @@ public class BibiotecaAppTest {
                 "Checkout Book, please press 2.\n" +
                 "Return Book, please press 3.\n" +
                 "List Movies, please press 4.\n" +
+                "Checkout Movie, please press 5.\n" +
                 "Quit System, please press 0.\n";
 
         // when
@@ -103,7 +104,7 @@ public class BibiotecaAppTest {
     }
 
     @Test
-    public void should_print_successful_checkout_message() {
+    public void should_print_successful_checkout_book_message() {
         // given
         String expect = "Thank you! Enjoy the book.\n";
         Long bookId = 1L;
@@ -116,7 +117,7 @@ public class BibiotecaAppTest {
     }
 
     @Test
-    public void should_print_unSuccessful_checkout_message() {
+    public void should_print_unSuccessful_checkout_book_message() {
         // given
         String expect = "That book is not available.\n";
         Long bookId = 4L;
@@ -170,8 +171,35 @@ public class BibiotecaAppTest {
         assertEquals(output.toString(), expect);
     }
 
+    @Test
+    public void should_print_successful_checkout_movie_message() {
+        // given
+        String expect = "Thank you! Enjoy the movie.\n";
+        Long movieId = 1L;
+
+        // when
+        movieService.checkoutMovie(movieId, movieList);
+
+        //then
+        assertEquals(output.toString(), expect);
+    }
+
+    @Test
+    public void should_print_unSuccessful_checkout_movie_message() {
+        // given
+        String expect = "That movie is not available.\n";
+        Long movieId = 4L;
+
+        // when
+        movieService.checkoutMovie(movieId, movieList);
+
+        //then
+        assertEquals(output.toString(), expect);
+    }
+
     @After
     public void tearDown() {
         System.setOut(System.out);
     }
+
 }

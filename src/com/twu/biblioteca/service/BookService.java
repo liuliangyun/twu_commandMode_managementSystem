@@ -24,9 +24,9 @@ public class BookService {
         Book book = findBookById(bookId, bookList);
         if (book != null && !book.isCheckOut()) {
             book.setCheckOut(true);
-            System.out.print(Constants.CHECKOUT_SUCCESSFUL);
+            System.out.print(Constants.CHECKOUT_BOOK_SUCCESSFUL);
         } else {
-            System.out.print(Constants.CHECKOUT_UNSUCCESSFUL);
+            System.out.print(Constants.CHECKOUT_BOOK_UNSUCCESSFUL);
         }
     }
 
@@ -43,9 +43,9 @@ public class BookService {
         Book book = findBookById(bookId, bookList);
         if (book != null && book.isCheckOut()) {
             book.setCheckOut(false);
-            System.out.print(Constants.RETURN_SUCCESSFUL);
+            System.out.print(Constants.RETURN_BOOK_SUCCESSFUL);
         } else {
-            System.out.print(Constants.RETURN_UNSUCCESSFUL);
+            System.out.print(Constants.RETURN_BOOK_UNSUCCESSFUL);
         }
     }
 

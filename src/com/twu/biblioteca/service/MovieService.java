@@ -21,4 +21,23 @@ public class MovieService {
         }
     }
 
+    public void checkoutMovie(Long movieId, ArrayList<Movie> movieList) {
+        Movie movie = findMovieById(movieId, movieList);
+        if (movie != null && !movie.isCheckOut()) {
+            movie.setCheckOut(true);
+            System.out.print(Constants.CHECKOUT_MOVIE_SUCCESSFUL);
+        } else {
+            System.out.print(Constants.CHECKOUT_MOVIE_UNSUCCESSFUL);
+        }
+    }
+
+    private Movie findMovieById(Long movieId, ArrayList<Movie> movieList) {
+        for (Movie movie : movieList) {
+            if (movie.getId() == movieId) {
+                return movie;
+            }
+        }
+        return null;
+    }
+
 }
