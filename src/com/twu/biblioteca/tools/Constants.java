@@ -14,5 +14,7 @@ public class Constants {
     public static final String CHECKOUT_UNSUCCESSFUL = "That book is not available.\n";
     public static final String RETURN_SUCCESSFUL = "Thank you for returning the book.\n";
     public static final String RETURN_UNSUCCESSFUL = "That is not a valid book to return.\n";
+    public static final String MOVIELIST_TITLE = "编号     电影名称     导演     出版年     评分\n";
+    public static final String LIST_MOVIE_OPTION = "List Movies, please press 4.\n";
 
 }

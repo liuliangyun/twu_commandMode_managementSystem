@@ -2,7 +2,9 @@ package com.twu.biblioteca;
 
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.service.BookService;
+import com.twu.biblioteca.service.MovieService;
 import com.twu.biblioteca.service.PageService;
 import org.junit.After;
 import org.junit.Before;
@@ -20,6 +22,8 @@ public class BibiotecaAppTest {
     private BookService bookService = new BookService();
     private PageService pageService = new PageService();
     private ArrayList<Book> bookList = new ArrayList<Book>();
+    private MovieService movieService = new MovieService();
+    private ArrayList<Movie> movieList = new ArrayList<Movie>();
 
     @Before
     public void setUp() throws Exception {
@@ -36,6 +40,21 @@ public class BibiotecaAppTest {
                 "2012");
         bookList.add(book_Java);
         bookList.add(book_JavaScript);
+
+        Movie movie_Schindler = new Movie(
+                1L,
+                "辛德勒的名单",
+                "史蒂文·斯皮尔伯格",
+                "1993",
+                9.4);
+        Movie movie_Godfather = new Movie(
+                2L,
+                "教父",
+                "弗朗西斯·福特·科波拉",
+                "1972",
+                9.2);
+        movieList.add(movie_Schindler);
+        movieList.add(movie_Godfather);
     }
 
     @Test
@@ -59,6 +78,7 @@ public class BibiotecaAppTest {
                 "List Books, please press 1.\n" +
                 "Checkout Book, please press 2.\n" +
                 "Return Book, please press 3.\n" +
+                "List Movies, please press 4.\n" +
                 "Quit System, please press 0.\n";
 
         // when
@@ -136,6 +156,20 @@ public class BibiotecaAppTest {
         assertEquals(output.toString(), expect);
     }
 
+    @Test
+    public void should_list_all_movies() {
+        // given
+        String expect = "------------------------------------------\n" +
+                "编号     电影名称     导演     出版年     评分\n" +
+                "1. 辛德勒的名单, 史蒂文·斯皮尔伯格, 1993, 9.4.\n" +
+                "2. 教父, 弗朗西斯·福特·科波拉, 1972, 9.2.\n";
+
+        // when
+        movieService.listAllMovies(movieList);
+
+        // then
+        assertEquals(output.toString(), expect);
+    }
 
     @After
     public void tearDown() throws Exception {

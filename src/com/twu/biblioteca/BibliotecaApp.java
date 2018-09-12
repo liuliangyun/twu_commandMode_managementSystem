@@ -1,8 +1,10 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.BookController;
+import com.twu.biblioteca.controller.MovieController;
 import com.twu.biblioteca.controller.PageController;
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.tools.DataSet;
 
 import java.util.ArrayList;
@@ -12,8 +14,10 @@ public class BibliotecaApp {
 
     private DataSet dataSet = new DataSet();
     private ArrayList<Book> bookList = dataSet.setBookList();
+    private ArrayList<Movie> movieList = dataSet.setMovieList();
     private BookController bookController = new BookController();
     private PageController pageController = new PageController();
+    private MovieController movieController = new MovieController();
     private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -34,7 +38,10 @@ public class BibliotecaApp {
                 checkoutBook();
             } else if (input.equals("3")) {
                 returnBook();
-            } else {
+            } else if (input.equals(("4"))) {
+                listAllMovies();
+            }
+            else {
                 notifyInvalidOption();
             }
         }
@@ -49,7 +56,7 @@ public class BibliotecaApp {
         pageController.displayWelcomeInfo();
     }
 
-    public void displayMainMenu() {
+    private void displayMainMenu() {
         pageController.displayMainMenu();
     }
 
@@ -71,6 +78,10 @@ public class BibliotecaApp {
     private Long getInputBookId() {
         System.out.print("Please enter the bookId.\n");
         return Long.parseLong(scanner.nextLine());
+    }
+
+    private void listAllMovies() {
+        movieController.listAllMovies(movieList);
     }
 
 }
