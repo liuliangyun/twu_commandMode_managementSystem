@@ -51,11 +51,17 @@ public class BibliotecaApp {
                 } else {
                     user = logIn();
                 }
-            } else if (input.equals(("4"))) {
+            } else if (input.equals("4")) {
                 listAllMovies();
             } else if (input.equals(("5"))) {
                 if (user != null) {
                     checkoutMovie();
+                } else {
+                    user = logIn();
+                }
+            } else if (input.equals("6")) {
+                if (user != null) {
+                    displayUserInfo(user);
                 } else {
                     user = logIn();
                 }
@@ -112,6 +118,13 @@ public class BibliotecaApp {
         System.out.print("Please enter the password.\n");
         String password = scanner.nextLine();
         return userController.logIn(libraryNumber, password, userList);
+    }
+
+    private void displayUserInfo(User user) {
+        System.out.print("name: " + user.getUserName()
+                + ", email: " + user.getEmail()
+                + ", phone: " + user.getPhone()
+                + ".\n");
     }
 
 }

@@ -17,6 +17,7 @@ public class PageService {
         System.out.print(Constants.RETURN_BOOK_OPTION);
         System.out.print(Constants.LIST_MOVIE_OPTION);
         System.out.print(Constants.CHECKOUT_MOVIE_OPTION);
+        System.out.print(Constants.USER_INFO_OPTION);
         System.out.print(Constants.QUIT_OPTION);
     }
 

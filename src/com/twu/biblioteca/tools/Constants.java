@@ -17,6 +17,7 @@ public class Constants {
     public static final String MOVIELIST_TITLE = "编号     电影名称     导演     出版年     评分\n";
     public static final String LIST_MOVIE_OPTION = "List Movies, please press 4.\n";
     public static final String CHECKOUT_MOVIE_OPTION = "Checkout Movie, please press 5.\n";
+    public static final String USER_INFO_OPTION = "Display Userinfo, please press 6.\n";
     public static final String CHECKOUT_MOVIE_SUCCESSFUL = "Thank you! Enjoy the movie.\n";
     public static final String CHECKOUT_MOVIE_UNSUCCESSFUL = "That movie is not available.\n";
     public static final String LOGIN_SUCCESSFUL = "Login successful! Enjoy yourself.\n";

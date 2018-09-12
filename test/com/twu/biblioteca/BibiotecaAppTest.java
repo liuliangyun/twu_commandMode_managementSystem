@@ -98,6 +98,7 @@ public class BibiotecaAppTest {
                 "Return Book, please press 3.\n" +
                 "List Movies, please press 4.\n" +
                 "Checkout Movie, please press 5.\n" +
+                "Display Userinfo, please press 6.\n" +
                 "Quit System, please press 0.\n";
 
         // when
