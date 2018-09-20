@@ -6,7 +6,6 @@ import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.service.BookService;
 import com.twu.biblioteca.service.MovieService;
-import com.twu.biblioteca.service.PageService;
 import com.twu.biblioteca.service.UserService;
 import org.junit.After;
 import org.junit.Before;
