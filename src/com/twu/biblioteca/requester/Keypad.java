@@ -3,11 +3,20 @@ package com.twu.biblioteca.requester;
 import com.twu.biblioteca.command.Command;
 
 public class Keypad {
+    private Command startCommand;
+    private Command exitCommand;
     private Command listCommand;
     private Command checkoutCommand;
     private Command returnbackCommand;
-    private Command stopCommand;
     private Command warnCommand;
+
+    public void setStartCommand(Command startCommand) {
+        this.startCommand = startCommand;
+    }
+
+    public void setExitCommand(Command exitCommand) {
+        this.exitCommand = exitCommand;
+    }
 
     public void setListCommand(Command listCommand) {
         this.listCommand = listCommand;
@@ -21,28 +30,28 @@ public class Keypad {
         this.returnbackCommand = returnbackCommand;
     }
 
-    public void setStopCommand(Command stopCommand) {
-        this.stopCommand = stopCommand;
-    }
-
     public void setWarnCommand(Command warnCommand) {
         this.warnCommand = warnCommand;
+    }
+
+    public void start() {
+        startCommand.execute();
+    }
+
+    public void exit() {
+        exitCommand.execute();
     }
 
     public void list() {
         listCommand.execute();
     }
 
-    public void checkout(Long id) {
+    public void checkout() {
         checkoutCommand.execute();
     }
 
-    public void returnback(Long id) {
+    public void returnback() {
         returnbackCommand.execute();
-    }
-
-    public void stop() {
-        stopCommand.execute();
     }
 
     public void warn() {

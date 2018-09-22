@@ -22,6 +22,7 @@ public class Constants {
     public static final String CHECKOUT_MOVIE_UNSUCCESSFUL = "That movie is not available.\n";
     public static final String LOGIN_SUCCESSFUL = "Login successful! Enjoy yourself.\n";
     public static final String LOGIN_UNSUCCESSFUL = "That user is not available.\n";
-    public static final String ERROR_MESSAGE="Select a valid option!";
+    public static final String EXIT_INFO ="Exit the Bangalore Public Library!\n";
+    public static final String WARN_INFO ="Select a valid option!\n";
 
 }
